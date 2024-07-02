@@ -35,4 +35,30 @@ class TestHelpers {
   static void restartTest(Function(int, int, int) resetState) {
     resetState(0, 0, 0);
   }
+
+  static void showErrorDialog1(BuildContext context, String s) {}
+
+
+
+
+
+    static void showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: const Text("Xatolik"),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

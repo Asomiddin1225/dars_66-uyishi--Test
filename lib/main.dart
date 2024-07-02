@@ -2,8 +2,10 @@ import 'package:dars_66/controllers/praduc_controllers.dart';
 import 'package:dars_66/controllers/test_controller.dart';
 import 'package:dars_66/firebase_options.dart';
 import 'package:dars_66/views/screens/home_screeens.dart';
+import 'package:dars_66/views/screens/login_screen.dart';
 import 'package:dars_66/views/screens/test_home.dart';
 import 'package:dars_66/views/screens/test_screens.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +31,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: TestHome(),
+        // home: TestHome(),
+        // home: LoginScreen(),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (ctx, snapshot) {
+            if (snapshot.hasData) {
+              return const TestHome();
+            }
+
+            return const LoginScreen();
+          },
+        ),
       ),
     );
   }

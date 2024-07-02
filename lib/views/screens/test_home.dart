@@ -1,3 +1,4 @@
+import 'package:dars_66/services/firebase_auth_service.dart';
 import 'package:dars_66/views/screens/test_screens.dart';
 import 'package:dars_66/views/widgets/admin_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,15 @@ class TestHome extends StatelessWidget {
           style: TextStyle(fontSize: 45, color: Colors.white),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              final firebaseAuth = FirebaseAuthService();
+              firebaseAuth.logout();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ]
       ),
       body: Center(
         child: Column(
